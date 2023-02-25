@@ -53,6 +53,7 @@ namespace BusinessLogic.Implementations
         public async Task<ServiceResponse> update_swot(swot swot)
         {
             var pars = new Dictionary<string, string>();
+            pars.Add(nameof(swot.ser), swot.ser.ToString());
             pars.Add(nameof(swot.dep_id), swot.dep_id.ToString());
             pars.Add(nameof(swot.dep_name), swot.dep_name);
             pars.Add(nameof(swot.strength), swot.strength);
