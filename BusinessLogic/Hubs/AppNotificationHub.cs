@@ -17,7 +17,7 @@ namespace BusinessLogic.Hubs
         public override async Task OnConnectedAsync()
         {
             // here we will update user in database
-            myCN = new SqlConnection("packet size=4096;user id=sa;password=Thank$123;data source=(local); persist security info=False;initial catalog=madrasty;Connect Timeout=5400;TrustServerCertificate=True");
+            myCN = new SqlConnection("data source=DESKTOP-J8G7HIP;Database=madrasty;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
             //  myCN = new SqlConnection("Server=tcp:madrasty-sql.database.windows.net,1433;Initial Catalog=madrasty;Persist Security Info=False;User ID=sysadmin;Password=Thank$123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             myCN.Open();
             myDA = new SqlDataAdapter(@"Exec [save_in_signalir_connections]  
@@ -36,7 +36,7 @@ namespace BusinessLogic.Hubs
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             // here we will update the user on database
-            myCN = new SqlConnection("packet size=4096;user id=sa;password=Thank$123;data source=(local); persist security info=False;initial catalog=madrasty;Connect Timeout=5400;TrustServerCertificate=True");
+            myCN = new SqlConnection("data source=DESKTOP-J8G7HIP;Database=madrasty;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
             //  myCN = new SqlConnection("Server=tcp:madrasty-sql.database.windows.net,1433;Initial Catalog=madrasty;Persist Security Info=False;User ID=sysadmin;Password=Thank$123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             myCN.Open();
             myDA = new SqlDataAdapter(@"Exec [delete_from_signalir_connections]  

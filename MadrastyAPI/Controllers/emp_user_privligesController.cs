@@ -51,13 +51,12 @@ namespace MadrastyAPI.Controllers
                                  {
                                      user_id = Convert.ToInt32(rw["user_id"]),
                                      emp_id = Convert.ToInt32(rw["emp_id"]),
-                                     priv_name = Convert.ToString(rw["priv_name"]),
-                                     page_name = Convert.ToString(rw["page_name"]),
+                                     priv_name = Convert.ToInt32(rw["priv_name"]),
+                                     page_name = Convert.ToInt32(rw["page_name"]),
                                      in_class_priv = Convert.ToInt32(rw["in_class_priv"]),
                                      dep_work = Convert.ToInt32(rw["dep_work"]),
                                      job_id = Convert.ToInt32(rw["job_id"]),
-                                     job_name = Convert.ToString(rw["job_name"]),
-                                      emp_name = Convert.ToString(rw["emp_name"])
+                                    
                                  }).ToList();
 
             return convertedList;
@@ -72,8 +71,8 @@ namespace MadrastyAPI.Controllers
                                  {
                                      user_id = Convert.ToInt32(rw["user_id"]),
                                      emp_id = Convert.ToInt32(rw["emp_id"]),
-                                     priv_name = Convert.ToString(rw["priv_name"]),
-                                     page_name = Convert.ToString(rw["page_name"]),
+                                     priv_name = Convert.ToInt32(rw["priv_name"]),
+                                     page_name = Convert.ToInt32(rw["page_name"]),
                                      in_class_priv = Convert.ToInt32(rw["in_class_priv"]),
                                      dep_work = Convert.ToInt32(rw["dep_work"]),
                                      job_id = Convert.ToInt32(rw["job_id"])
@@ -92,8 +91,8 @@ namespace MadrastyAPI.Controllers
                                  select new emp_user_privliges()
                                  {
                                      ser = Convert.ToInt32(rw["ser"]),                                   
-                                     page_name = Convert.ToString(rw["page_name"]),
-                                     priv_name = Convert.ToString(rw["priv_name"]),
+                                     page_name = Convert.ToInt32(rw["page_name"]),
+                                     priv_name = Convert.ToInt32(rw["priv_name"]),
                                      read = Convert.ToInt32(rw["read"]),
                                      read_and_write = Convert.ToInt32(rw["read_and_write"]),
                                      write = Convert.ToInt32(rw["write"])

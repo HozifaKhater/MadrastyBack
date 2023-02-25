@@ -30,6 +30,7 @@ namespace MadrastyAPI.Models
         public int emp_from_id { get; set; }
         public int emp_to_id { get; set; }
         public int takeem_id { get; set; }
+        public int percentage { get; set; }
 
 
         public CLS_connection con_db = new CLS_connection();
@@ -58,7 +59,8 @@ namespace MadrastyAPI.Models
    '" + vnote + @"',
   '" + emp_from_id + @"',
   '" + emp_to_id + @"',
-  '" + takeem_id + @"'
+  '" + takeem_id + @"',
+'" + percentage + @"'
 
 
             ", con_db.myCN);
@@ -129,7 +131,8 @@ namespace MadrastyAPI.Models
    '" + vnote + @"',
   '" + emp_from_id + @"',
   '" + emp_to_id + @"',
-  '" + takeem_id + @"'
+  '" + takeem_id + @"',
+'" + percentage + @"'
             ", con_db.myCN);
             SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(con_db.myDA);
             con_db.myDA.MissingSchemaAction = MissingSchemaAction.AddWithKey;

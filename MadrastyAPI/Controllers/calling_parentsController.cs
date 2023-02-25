@@ -35,7 +35,7 @@ namespace MadrastyAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> update_calling_parents(calling_parents calling_parents)
         {
             var result = await _service.update_calling_parents(calling_parents);
