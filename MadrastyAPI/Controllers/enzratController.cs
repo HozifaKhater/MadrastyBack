@@ -35,7 +35,7 @@ namespace MadrastyAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> update_enzrat(enzrat enzrat)
         {
             var result = await _service.update_enzrat(enzrat);

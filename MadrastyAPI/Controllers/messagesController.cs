@@ -59,14 +59,26 @@ namespace MadrastyAPI.Controllers
                     string value = row["connection_id"].ToString();
                     data.Add(value);
                 }
-                await _hubContext.Clients.Clients(data).SendAsync("GeneralNotification", new BusinessLogic.ViewModels.NotificationModel
+
+
+                // check nulls in tables at dataset
+                var msgs = new List<NotificationModel>();
+                if(list_of_cons.Tables[1] != null)
                 {
-                    Body = (string)list_of_cons.Tables[1].Rows[0][columnName: "msg_body"],
-                    Title = (string)list_of_cons.Tables[1].Rows[0][columnName: "title"],
-                    IsRead = false,
-                    object_id = Convert.ToInt32(messages.msg_id),
-                    msg_date = (string)list_of_cons.Tables[1].Rows[0][columnName: "msg_date"],
-                });
+                    for (int i = 0; i < list_of_cons.Tables[1].Rows.Count; i++)
+                    {
+                        msgs.Add(new BusinessLogic.ViewModels.NotificationModel
+                        {
+                            Body = (string)list_of_cons.Tables[1].Rows[i][columnName:"msg_body"],
+                            Title = (string)list_of_cons.Tables[1].Rows[i][columnName: "title"],
+                            IsRead = false,
+                            object_id = Convert.ToInt32(messages.msg_id),
+                            msg_date = (string)list_of_cons.Tables[1].Rows[i][columnName: "msg_date"],
+                        });
+                    }
+                }
+
+                await _hubContext.Clients.Clients(data).SendAsync("GeneralNotification", msgs.FirstOrDefault());
             }
             catch (InvalidCastException e)
             {

@@ -135,7 +135,7 @@ namespace MadrastyAPI.Controllers
 
         }
         [HttpPost("details")]
-        public JsonResult save_in_deails(trips obj)
+        public JsonResult save_in_deails(trips_details obj)
         {
 
             
@@ -144,13 +144,13 @@ namespace MadrastyAPI.Controllers
             con_obj.student_name = obj.student_name;
 
 
-             con_obj.save_in_trip_details();
+             con_obj.save_in_trip_details();    
             return new JsonResult("");
         }
         [HttpPost("delete_details_with_trip_id")]
-        public JsonResult Delete_from_details(trips obj)
+        public JsonResult Delete_from_details(int id)
         {
-            con_obj.trip_id = obj.trip_id;
+            con_obj.trip_id = id;
             con_obj.delete_from_trip_details_with_trip_id();
             return new JsonResult("deleted Successfully");
 

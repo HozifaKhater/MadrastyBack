@@ -17,8 +17,8 @@ namespace MadrastyAPI.Models
         public int job_id { get; set; }
         public string emp_name { get; set; } = string.Empty;    
         public string job_name { get; set; } = string.Empty;    
-        public string priv_name { get; set; } = string.Empty;
-        public string page_name { get; set; } = string.Empty;
+        public int priv_name { get; set; }
+        public int page_name { get; set; }
         public int in_class_priv { get; set; }
         public int dep_work { get; set; }
         public int read { get; set; }

@@ -40,7 +40,7 @@ namespace BusinessLogic.Implementations
         }
         public async Task<ServiceResponse> update_enzrat(enzrat enzrat)
         {
-            var dalResponse = await _db.ExecuteNonQuery("update_in_enzrat", _db.CreateListOfSqlParams(enzrat, "update", "ser"));
+            var dalResponse = await _db.ExecuteNonQuery("update_enzrat", _db.CreateListOfSqlParams(enzrat, "update", "ser"));
             return new ServiceResponse(dalResponse);
 
 

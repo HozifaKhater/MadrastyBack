@@ -79,20 +79,20 @@ namespace MadrastyAPI.Controllers
                     class_id = objsubjects.class_id
                 };
 
-                con_hol.title = objsubject.title;
-                con_hol.start = objsubject.start;
-                con_hol.end = objsubject.end;
-                con_hol.className = objsubject.className;
-                con_hol.emp_id = objsubject.emp_id;
-                con_hol.emp_name = objsubject.emp_name;
-                con_hol.subject_id = objsubject.subject_id;
-                con_hol.level_id = objsubject.level_id;
-                con_hol.class_id = objsubject.class_id;
+                con_hol.title = objsubjects.title;
+                con_hol.start = objsubjects.start;
+                con_hol.end = objsubjects.end;
+                con_hol.className = objsubjects.className;
+                con_hol.emp_id = objsubjects.emp_id;
+                con_hol.emp_name = objsubjects.emp_name;
+                con_hol.subject_id = objsubjects.subject_id;
+                con_hol.level_id = objsubjects.level_id;
+                con_hol.class_id = objsubjects.class_id;
 
                 con_hol.save_in_gdwel_7ss();
 
-                dateStart = dateStart.AddDays(7);
-            }
+            dateStart = dateStart.AddDays(7);
+        }
             
             return new JsonResult("Added Successfully");
         }
@@ -280,10 +280,13 @@ namespace MadrastyAPI.Controllers
                                      @class = Convert.ToString(rw["class"]),
                                      level = Convert.ToString(rw["level"]),
                                      eventtime = Convert.ToString(rw["eventtime"]),
-                                     day = Convert.ToString(rw["day"])
+                                     day = Convert.ToString(rw["day"]),
+                                     id = Convert.ToInt32(rw["id"]),
+                                     start = Convert.ToString(rw["start"]),
+
                                  })
                      .GroupBy(x => x.day)
-                     .Select(x=> new { day = x.Key , events = x.Select(e=> new { e.teacher,e.level,e.@class, e.eventtime }) })
+                     .Select(x=> new { day = x.Key , events = x.Select(e=> new { e.teacher,e.level,e.@class, e.eventtime,e.id,e.start }) })
                      .ToList();
 
             return Ok(convertedList);
@@ -302,10 +305,12 @@ namespace MadrastyAPI.Controllers
                                  {
                                      @class = Convert.ToString(rw["class"]),
                                      title = Convert.ToString(rw["title"]),
-                                     position = Convert.ToInt32(rw["position"])
+                                     position = Convert.ToInt32(rw["position"]),
+                                       id = Convert.ToInt32(rw["id"]),
+                                     start = Convert.ToString(rw["start"]),
                                  })
                      .GroupBy(x => x.@class)
-                     .Select(x => new { @class = x.Key, events = x.Select(e => new { e.title, e.position }) })
+                     .Select(x => new { @class = x.Key, events = x.Select(e => new { e.title, e.position,e.id,e.start }) })
                      .ToList();
 
             return Ok(convertedList);

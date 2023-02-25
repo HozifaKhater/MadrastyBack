@@ -313,21 +313,29 @@ namespace MadrastyAPI.Controllers
             return convertedList;
         }
         [HttpGet("get_emp_def_with_subject_id_with_validation")]
-        public List<employee> get_emp_def_with_subject_id_with_validation(int id, string date)
+        public List<employee> get_emp_def_with_subject_id_with_validation(int id, DateTime date)
         {
-            con_emp.start_date = date;
+            con_emp.start_date = date.ToString("yyyy-MM-dd HH:mm:ss");
             con_emp.subject_id = id;
-            dataset1 = con_emp.get_emp_def_with_subject_id_with_validation();
+            try
+            {
+                dataset1 = con_emp.get_emp_def_with_subject_id_with_validation();
 
-            var convertedList = (from rw in dataset1.Tables[0].AsEnumerable()
-                                 select new employee()
-                                 {
-                                     emp_id = Convert.ToInt32(rw["emp_id"]),
-                                     emp_name = Convert.ToString(rw["emp_name"]),
+                var convertedList = (from rw in dataset1.Tables[0].AsEnumerable()
+                                     select new employee()
+                                     {
+                                         emp_id = Convert.ToInt32(rw["emp_id"]),
+                                         emp_name = Convert.ToString(rw["emp_name"]),
 
-                                 }).ToList();
+                                     }).ToList();
 
-            return convertedList;
+                return convertedList;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+            
         }
     }
 }

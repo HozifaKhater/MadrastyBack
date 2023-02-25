@@ -43,7 +43,7 @@ namespace MadrastyAPI.Controllers
                                      emp_from_id = Convert.ToInt32(rw["emp_from_id"]),
                                      emp_to_id = Convert.ToInt32(rw["emp_to_id"]),
                                      takeem_id = Convert.ToInt32(rw["takeem_id"]),
-
+                                     percentage = Convert.ToInt32(rw["percentage"])
 
                                  }).ToList();
 
@@ -70,6 +70,7 @@ namespace MadrastyAPI.Controllers
             con_yeardata.emp_from_id = objyeardata.emp_from_id;
             con_yeardata.emp_to_id = objyeardata.emp_to_id;
             con_yeardata.takeem_id = objyeardata.takeem_id;
+            con_yeardata.percentage = objyeardata.percentage;
 
             con_yeardata.update_visits();
             return new JsonResult("Updated Successfully");
@@ -110,7 +111,7 @@ namespace MadrastyAPI.Controllers
                                      emp_from_id = Convert.ToInt32(rw["emp_from_id"]),
                                      emp_to_id = Convert.ToInt32(rw["emp_to_id"]),
                                      takeem_id = Convert.ToInt32(rw["takeem_id"]),
-
+                                     percentage = Convert.ToInt32(rw["percentage"])
 
                                  }).ToList();
 
@@ -139,7 +140,7 @@ namespace MadrastyAPI.Controllers
             con_yeardata.emp_from_id = objyeardata.emp_from_id;
             con_yeardata.emp_to_id = objyeardata.emp_to_id;
             con_yeardata.takeem_id = objyeardata.takeem_id;
-
+            con_yeardata.percentage = objyeardata.percentage;
 
             var year_data_id = con_yeardata.save_in_visits();
             return new JsonResult(year_data_id);

@@ -8,7 +8,14 @@ using  System.Threading.Tasks;
 
 namespace MadrastyAPI.Models
 {
-    public class trips
+    public class trips_details
+    {
+        [Key]
+        public int trip_id { get; set; }
+        public int student_id { get; set; }
+        public string student_name { get; set; } = string.Empty;
+    }
+        public class trips
     {
         [Key]
 

@@ -57,8 +57,7 @@ namespace MadrastyAPI.Controllers
                                      emp_name = Convert.ToString(rw["emp_name"]),
                                      observ_loc = Convert.ToString(rw["observ_loc"]),
                                      observe_date = Convert.ToString(rw["observe_date"]),
-                                     civil_id = Convert.ToInt32(rw["civil_id"]),
-                                     emp_dep = Convert.ToString(rw["emp_dep"]),
+                                     
 
                                  }).ToList();
 
