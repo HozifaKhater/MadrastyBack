@@ -30,6 +30,7 @@ namespace MadrastyAPI.Models
         public string? lev_name { get; set; }
         public int is_late { get; set; }
         public int is_block { get; set; }
+        public int position { get; set; }
         public string teacher { get; set; } = string.Empty;
         public string @class { get; set; } = string.Empty;
         public string level { get; set; } = string.Empty;
@@ -305,6 +306,20 @@ namespace MadrastyAPI.Models
             //dep_id = (int)myDS.Tables[0].Rows[0]["dep_id"];
             //dep.dep_name = (string)myDS.Tables[0].Rows[0]["dep_name"];
             //dep.listdepartment.Add(dep);
+            con_db.myCN.Close();
+            return myDS;
+
+        }
+
+        public DataSet get_gdwel_7ss_all()
+        {
+            con_db.OpenDB_general();
+            con_db.myDA = new SqlDataAdapter("Exec [get_gdwel_7ss_all]", con_db.myCN);
+            SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(con_db.myDA);
+            con_db.myDA.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+
+            DataSet myDS = new DataSet();
+            con_db.myDA.Fill(myDS);
             con_db.myCN.Close();
             return myDS;
 

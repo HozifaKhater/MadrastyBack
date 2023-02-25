@@ -283,11 +283,34 @@ namespace MadrastyAPI.Controllers
                                      day = Convert.ToString(rw["day"])
                                  })
                      .GroupBy(x => x.day)
+                     .Select(x=> new { day = x.Key , events = x.Select(e=> new { e.teacher,e.level,e.@class, e.eventtime }) })
                      .ToList();
 
             return Ok(convertedList);
 
           //  return Ok((List<gdwel_7ss>)convertedList.GroupBy(x => x.day));
+
+            //return (List<gdwel_7ss>)convertedList.GroupBy(x=>x.day);
+        }
+        [HttpGet("get_gdwel_7ss_all")]
+        public async Task<IActionResult> get_gdwel_7ss_all()
+        {
+            subject = con_hol.get_gdwel_7ss_all();
+
+            var convertedList = (from rw in subject.Tables[0].AsEnumerable()
+                                 select new gdwel_7ss()
+                                 {
+                                     @class = Convert.ToString(rw["class"]),
+                                     title = Convert.ToString(rw["title"]),
+                                     position = Convert.ToInt32(rw["position"])
+                                 })
+                     .GroupBy(x => x.@class)
+                     .Select(x => new { @class = x.Key, events = x.Select(e => new { e.title, e.position }) })
+                     .ToList();
+
+            return Ok(convertedList);
+
+            //  return Ok((List<gdwel_7ss>)convertedList.GroupBy(x => x.day));
 
             //return (List<gdwel_7ss>)convertedList.GroupBy(x=>x.day);
         }

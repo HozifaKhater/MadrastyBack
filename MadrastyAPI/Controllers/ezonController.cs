@@ -4,6 +4,7 @@ using  System.Data;
 using  BusinessLogic.Abstractions;
 using  Microsoft.AspNetCore.SignalR;
 using  BusinessLogic.Hubs;
+using BusinessLogic.Contexts;
 
 namespace MadrastyAPI.Controllers
 {
@@ -13,10 +14,12 @@ namespace MadrastyAPI.Controllers
     {
 
         private readonly IHubContext<AppNotificationHub> _hubContext;
+        private readonly IDatabaseContext _db;
 
-        public ezonController(IHubContext<AppNotificationHub> hubContext)
+        public ezonController(IHubContext<AppNotificationHub> hubContext,IDatabaseContext db)
         {
             _hubContext = hubContext;
+            _db = db;
         }
 
         ezon con_ezon = new ezon();
@@ -26,27 +29,29 @@ namespace MadrastyAPI.Controllers
         public DataSet dataset1 { get; set; } = new DataSet();
 
         [HttpGet]
-        public List<ezon> Get()
+        public async Task<IActionResult> Get()
         {
-            dataset1 = con_ezon.get_absent_premit_ezoon();
-            var convertedList = (from rw in dataset1.Tables[0].AsEnumerable()
-                                 select new ezon()
-                                 {
-                                     ezn_id = Convert.ToInt32(rw["ezn_id"]),
-                                     absent_ezn_id = Convert.ToInt32(rw["absent_ezn_id"]),
-                                     premit_id = Convert.ToInt32(rw["premit_id"]),
-                                     emp_id = Convert.ToInt32(rw["emp_id"]),
-                                     ezn_date = Convert.ToString(rw["ezn_date"]),
-                                     ezn_reason = Convert.ToString(rw["ezn_reason"]),
-                                     time_from = Convert.ToString(rw["time_from"]),
-                                     time_to = Convert.ToString(rw["time_to"]),
-                                     ezn_state = Convert.ToInt32(rw["ezn_state"]),
-                                     emp_name = Convert.ToString(rw["emp_name"]),
-                                     civil_id = Convert.ToInt32(rw["civil_id"]),
-                                     emp_dep = Convert.ToString(rw["emp_dep"]),
-                                 }).ToList();
+            var result = await _db.ExecuteQuery("get_absent_premit_ezoon");
+            return Ok(result.Data);
+            //dataset1 = con_ezon.get_absent_premit_ezoon();
+            //var convertedList = (from rw in dataset1.Tables[0].AsEnumerable()
+            //                     select new ezon()
+            //                     {
+            //                         ezn_id = Convert.ToInt32(rw["ezn_id"]),
+            //                         absent_ezn_id = Convert.ToInt32(rw["absent_ezn_id"]),
+            //                         premit_id = Convert.ToInt32(rw["premit_id"]),
+            //                         emp_id = Convert.ToInt32(rw["emp_id"]),
+            //                         ezn_date = Convert.ToString(rw["ezn_date"]),
+            //                         ezn_reason = Convert.ToString(rw["ezn_reason"]),
+            //                         time_from = Convert.ToString(rw["time_from"]),
+            //                         time_to = Convert.ToString(rw["time_to"]),
+            //                         ezn_state = Convert.ToInt32(rw["ezn_state"]),
+            //                         emp_name = Convert.ToString(rw["emp_name"]),
+            //                         civil_id = Convert.ToInt32(rw["civil_id"]),
+            //                         emp_dep = Convert.ToString(rw["emp_dep"]),
+            //                     }).ToList();
 
-            return convertedList;
+            //return convertedList;
         }
 
         // GET api/<controller>/5
