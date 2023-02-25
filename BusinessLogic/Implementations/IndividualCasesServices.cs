@@ -28,7 +28,7 @@ namespace BusinessLogic.Implementations
 
         public async Task<ServiceResponse> UpdateIndividualCase(IndividualCases student)
         {
-            var dalResponse = await _db.ExecuteNonQuery("update_indevidual_cases",
+            var dalResponse = await _db.ExecuteNonQuery("update_individual_cases",
                 _db.CreateListOfSqlParams(student, "update", "id"));
 
             return new ServiceResponse(dalResponse);

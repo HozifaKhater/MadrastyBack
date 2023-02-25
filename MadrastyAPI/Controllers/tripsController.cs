@@ -148,9 +148,9 @@ namespace MadrastyAPI.Controllers
             return new JsonResult("");
         }
         [HttpPost("delete_details_with_trip_id")]
-        public JsonResult Delete_from_details(trips obj)
+        public JsonResult Delete_from_details(int id)
         {
-            con_obj.trip_id = obj.trip_id;
+            con_obj.trip_id = id;
             con_obj.delete_from_trip_details_with_trip_id();
             return new JsonResult("deleted Successfully");
 
